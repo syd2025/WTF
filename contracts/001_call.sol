@@ -1,6 +1,10 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.30;
 
+/**
+call：  调用合约，对于已经部署的合约进行调用
+*/
+
 contract TestCall {
     string public message;
     uint public x;
