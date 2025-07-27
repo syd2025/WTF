@@ -18,6 +18,7 @@ contract Create2Factory {
 
     function deploy(uint _salt) external {
         DeployWithCreate2 _contract = new DeployWithCreate2{
+            // 使用salt提前确定合约地址
             salt: bytes32(_salt)
         }(msg.sender);
 
