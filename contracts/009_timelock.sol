@@ -19,6 +19,7 @@ contract TimeLock{
     uint constant GRADCE_PERIOD = 1000;
 
     event Queue(bytes32 indexed ,address indexed , uint, string, bytes, uint);
+    event Execute(bytes32, address, uint, string, bytes, uint);
 
     receive() external payable { }
 
@@ -65,7 +66,6 @@ contract TimeLock{
         emit Queue(
             txId,_target, _value, _func, _data, _timestamp
         );
-
     }
 
     function execute(
@@ -105,6 +105,8 @@ contract TimeLock{
         if(!success){
             revert TxIdFailedError();
         }
+
+        emit Execute(txId, _target, _value, _func, _data, _timestamp);
         return result;
     }
 }
@@ -116,7 +118,7 @@ contract TestTimeLock {
         timelock = _timelock;
     }
 
-    function test() external {
-        require(msg.sender == timelock, "");
+    function test() external view {
+        require(msg.sender == timelock, "timelock failed");
     }
 }
