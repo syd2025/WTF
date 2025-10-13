@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.30;
 
-contract abiDecode {
+contract AbiDecode {
 
     struct MyStruct{
         string name;
